@@ -7,7 +7,7 @@
                     <img class="card-img-top" style="height: 250px;" src="images/profile.png" alt="Card image">
                     <div class="card-body">
                         <h4 class="card-title my-text-ellipsis">${board.title}</h4>
-                        <a href="/detail" class="btn btn-primary">${board.content}</a>
+                        <a href="/board/${board.id}" class="btn btn-primary">상세보기</a>
                     </div>
                 </div>
                 </c:forEach>
