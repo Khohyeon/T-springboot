@@ -36,7 +36,7 @@ public class UserContoroller {
     @PostMapping("/join")
     public String join(JoinReqDto joinReqDto) {
         userService.회원가입(joinReqDto);
-        return "";
+        return "redirect:/loginForm";
 
     }
 
