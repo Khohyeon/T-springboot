@@ -1,11 +1,15 @@
 package shop.mtcoding.blog2.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import shop.mtcoding.blog2.dto.board.BoardReq.BoardSaveReqDto;
+import shop.mtcoding.blog2.model.Board;
 import shop.mtcoding.blog2.model.BoardRepository;
 import shop.mtcoding.blog2.service.BoardService;
 
@@ -19,7 +23,9 @@ public class BoardController {
     private BoardRepository boardRepository;
 
     @GetMapping({ "/", "/board" })
-    public String main() {
+    public String main(Model model) {
+        List<Board> boardList = boardRepository.findAll();
+        model.addAttribute("boardList", boardList);
         return "board/main";
     }
 
@@ -29,7 +35,7 @@ public class BoardController {
     }
 
     @PostMapping("/board")
-    public String save(BoardSaveReqDto boardSaveReqDto) {
+    public String save(BoardSaveReqDto boardSaveReqDto, Model model) {
         boardService.글쓰기(boardSaveReqDto);
         return "redirect:/board";
     }
