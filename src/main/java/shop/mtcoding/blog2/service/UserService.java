@@ -31,8 +31,12 @@ public class UserService {
     }
 
     public void 로그인(LoginReqDto loginReqDto) {
-        User principal =  userRepository.findByIdAndPassword(loginReqDto.getUsername(), loginReqDto.getPassword());
+        User principal = userRepository.findByIdAndPassword(loginReqDto.getUsername(), loginReqDto.getPassword());
         session.setAttribute("principal", principal);
+
+        if (principal == null) {
+            throw new CustomException("유저네임 혹은 패스워드가 잘못 입력되었습니다");
+        }
     }
 
 }

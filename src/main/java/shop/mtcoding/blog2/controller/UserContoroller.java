@@ -60,6 +60,12 @@ public class UserContoroller {
 
     @PostMapping("/login")
     public String login(LoginReqDto loginReqDto) {
+        if (loginReqDto.getUsername() == null || loginReqDto.getUsername().isEmpty()) {
+            throw new CustomException("username을 작성해주세요");
+        }
+        if (loginReqDto.getPassword() == null || loginReqDto.getPassword().isEmpty()) {
+            throw new CustomException("password를 작성해주세요");
+        }
         userService.로그인(loginReqDto);
 
         return "redirect:/";
