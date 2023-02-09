@@ -34,6 +34,8 @@ public class BoardService {
 
     @Transactional
     public void 게시글수정(int id, BoardUpdateRespDto boardUpdateRespDto, int principalId) {
+        // boardRepository.updateById(id, boardUpdateRespDto.getTitle(),
+        // boardUpdateRespDto.getContent());
 
     }
 }
