@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import shop.mtcoding.blog2.dto.board.BoardReq.BoardSaveReqDto;
-import shop.mtcoding.blog2.model.Board;
+import shop.mtcoding.blog2.dto.board.BoardResp.BoardDetailRespDto;
+import shop.mtcoding.blog2.dto.board.BoardResp.BoardMainRespDto;
 import shop.mtcoding.blog2.model.BoardRepository;
 import shop.mtcoding.blog2.service.BoardService;
 
@@ -23,9 +24,9 @@ public class BoardController {
     @Autowired
     private BoardRepository boardRepository;
 
-    @GetMapping({ "/", "/board" })
+    @GetMapping({ "/", "/main" })
     public String main(Model model) {
-        List<Board> boardList = boardRepository.findAll();
+        List<BoardMainRespDto> boardList = boardRepository.findAllWithUser();
         model.addAttribute("boardList", boardList);
         return "board/main";
     }
@@ -38,11 +39,14 @@ public class BoardController {
     @PostMapping("/board")
     public String save(BoardSaveReqDto boardSaveReqDto, Model model) {
         boardService.글쓰기(boardSaveReqDto);
-        return "redirect:/board";
+
+        return "redirect:/";
     }
 
     @GetMapping("/board/{id}")
-    public String detail(@PathVariable int id) {
+    public String detail(@PathVariable int id, Model model) {
+        BoardDetailRespDto boardDetail = boardRepository.findOneWithUser(id);
+        model.addAttribute("boardDetail", boardDetail);
         return "board/detail";
     }
 

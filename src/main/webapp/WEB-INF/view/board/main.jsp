@@ -6,6 +6,7 @@
                 <div class="card col-lg-3">
                     <img class="card-img-top" style="height: 250px;" src="images/profile.png" alt="Card image">
                     <div class="card-body">
+                        <div>작성자 : ${board.username}</div>                    
                         <h4 class="card-title my-text-ellipsis">${board.title}</h4>
                         <a href="/board/${board.id}" class="btn btn-primary">상세보기</a>
                     </div>
