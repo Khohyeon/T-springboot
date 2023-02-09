@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="shop.mtcoding.blog2.model.BoardRepository">
     <insert id="insert">
-      insert into board_tb(title, content, thumbnail, user_id, created_at) values(#{title}, #{content}, #{thumbnail}, #{userId}, now()) 
+      insert into board_tb(title, content, created_at) values(#{title}, #{content}, now()) 
    </insert>
     
    <update id="updateById">
@@ -15,6 +15,21 @@
 
    <select id="findAll" resultType="shop.mtcoding.blog2.model.Board">
       select * from board_tb
+   </select>
+
+   <select id="findAllWithUser" resultType="shop.mtcoding.blog2.dto.board.BoardResp$BoardMainRespDto">
+      select bt.id,bt.title,ut.username
+        from board_tb bt
+       inner join user_tb ut
+          on ut.id = bt.user_id
+   </select>
+
+   <select id="findOneWithUser" resultType="shop.mtcoding.blog2.dto.board.BoardResp$BoardDetailRespDto">
+      select bt.id,bt.title,bt.content,ut.username
+        from board_tb bt
+       inner join user_tb ut
+          on ut.id = bt.user_id
+       where bt.id = #{id}   
    </select>
 
    <select id="findById" resultType="shop.mtcoding.blog2.model.Board">
