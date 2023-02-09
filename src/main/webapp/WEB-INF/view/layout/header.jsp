@@ -36,7 +36,7 @@
                             </li>
                            
                            <li class="nav-item">
-                                <a class="nav-link" href="/board/writeForm">글쓰기</a>
+                                <a class="nav-link" href="/board/saveForm">글쓰기</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/user/updateForm">회원정보</a>
