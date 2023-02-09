@@ -14,7 +14,6 @@
             <button onclick="updateById(${board.id})" type="button" class="btn btn-primary">글수정완료</button>
             </form>
 
-
         <script>
            function updateById(id) {
                 let data : {
@@ -37,6 +36,7 @@
                 });
            }
         </script>
+        
         <script>
             $('.summernote').summernote({
                 tabsize: 2,
