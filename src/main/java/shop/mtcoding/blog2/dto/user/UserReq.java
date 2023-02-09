@@ -13,4 +13,12 @@ public class UserReq {
         private String email;
 
     }
+
+    @Setter
+    @Getter
+    public static class LoginReqDto {
+        private String username;
+        private String password;
+
+    }
 }
